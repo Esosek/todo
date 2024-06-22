@@ -1,12 +1,12 @@
 import { createContext, useState, type PropsWithChildren } from 'react';
 
-enum TodoItemStatus {
+export enum TodoItemStatus {
   ACTIVE,
   COMPLETED,
   DELETED,
 }
 
-type TodoItem = {
+export type TodoItem = {
   id: number;
   text: string;
   status: TodoItemStatus;
@@ -31,9 +31,11 @@ const defaultValue = {
   clearCompleted: () => {},
 };
 
-const TodoContext = createContext<TodoContextType>(defaultValue);
+export const TodoContext = createContext<TodoContextType>(defaultValue);
 
-export function TodoContextContextProvider({ children }: PropsWithChildren) {
+export function TodoContextContextProvider({
+  children,
+}: PropsWithChildren<{}>) {
   const [items, setItems] = useState(defaultValue.items);
 
   function addItem(todoText: string) {
@@ -52,7 +54,7 @@ export function TodoContextContextProvider({ children }: PropsWithChildren) {
   }
 
   function toggleItem(id: number) {
-    setItems((prevItems) => {
+    setItems((prevItems) =>
       prevItems.map((item) => {
         if (item.id === id) {
           return {
@@ -64,20 +66,19 @@ export function TodoContextContextProvider({ children }: PropsWithChildren) {
           };
         }
         return item;
-      });
-      return [...prevItems];
-    });
+      })
+    );
   }
 
   function clearCompleted() {
-    setItems((prevItems) => {
-      return prevItems.map((item) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => {
         if (item.status === TodoItemStatus.COMPLETED) {
           return { ...item, status: TodoItemStatus.DELETED };
         }
         return item;
-      });
-    });
+      })
+    );
   }
   return (
     <TodoContext.Provider

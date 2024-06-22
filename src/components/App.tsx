@@ -5,6 +5,7 @@ import moonIcon from '../assets/images/icon-moon.svg';
 import { TodoContextContextProvider } from '../context/TodoContext';
 
 import CreateInput from './CreateInput';
+import TodoList from './TodoList';
 
 export default function App() {
   const isMobile = window.innerWidth < 768;
@@ -27,6 +28,7 @@ export default function App() {
         </div>
         <TodoContextContextProvider>
           <CreateInput />
+          <TodoList />
         </TodoContextContextProvider>
       </div>
     </div>
