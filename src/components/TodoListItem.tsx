@@ -25,7 +25,7 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
   }
 
   return (
-    <li className="grid grid-cols-[auto_1fr_auto] gap-6 py-4 px-6 border-b-[1px] border-neutral-light-gray-200">
+    <li className="group grid grid-cols-[auto_1fr_auto] gap-6 py-4 px-6 border-b-[1px] border-neutral-light-gray-200">
       <input
         type="checkbox"
         name={`todo-${todo.id}`}
@@ -57,7 +57,7 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
       >
         {todo.text}
       </p>
-      <button onClick={handleDelete}>
+      <button onClick={handleDelete} className="hidden group-hover:block">
         <img src={iconCross.src} alt="Cross icon" />
       </button>
     </li>
