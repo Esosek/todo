@@ -11,7 +11,7 @@ export default function App() {
   const isMobile = window.innerWidth < 768;
 
   return (
-    <div className="text-lg min-h-lvh bg-neutral-light-gray-200 text-neutral-light-gray-500">
+    <main className="text-lg min-h-lvh bg-neutral-light-gray-200 text-neutral-light-gray-500">
       <img
         src={isMobile ? bgMobileLight.src : bgDesktopLight.src}
         alt="Background image of mountains"
@@ -31,6 +31,6 @@ export default function App() {
           <TodoList />
         </TodoContextContextProvider>
       </div>
-    </div>
+    </main>
   );
 }
