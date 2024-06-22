@@ -1,6 +1,9 @@
 import bgDesktopLight from '../assets/images/bg-desktop-light.jpg';
 import bgMobileLight from '../assets/images/bg-mobile-light.jpg';
 import moonIcon from '../assets/images/icon-moon.svg';
+
+import { TodoContextContextProvider } from '../context/TodoContext';
+
 import CreateInput from './CreateInput';
 
 export default function App() {
@@ -22,7 +25,9 @@ export default function App() {
             <img src={moonIcon.src} alt="Moon icon" />
           </button>
         </div>
-        <CreateInput />
+        <TodoContextContextProvider>
+          <CreateInput />
+        </TodoContextContextProvider>
       </div>
     </div>
   );
