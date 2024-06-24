@@ -3,7 +3,7 @@ import moonIcon from '../assets/images/icon-moon.svg';
 import sunIcon from '../assets/images/icon-sun.svg';
 
 export default function ThemeToggle() {
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState(false);
 
   function handleThemeChange() {
     if (isLightMode) {

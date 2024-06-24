@@ -61,7 +61,7 @@ export default function TodoList() {
           <TodoListItem key={todo.id} todo={todo} />
         ))}
       </ul>
-      <div className="grid grid-cols-3 py-3 px-6 text-base text-neutral-light-gray-400">
+      <div className="grid grid-cols-3 py-3 px-6 text-neutral-light-gray-400 sm:text-base">
         <p>{activeTodosLenght} items left</p>
         <div className="flex gap-4 font-bold">
           {Object.values(Filter).map((f) => (
