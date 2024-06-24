@@ -25,7 +25,7 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
   }
 
   return (
-    <li className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4 px-4 border-b-[1px] border-neutral-light-gray-200 sm:gap-6 sm:px-6">
+    <li className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4 px-4 border-b-[1px] border-neutral-light-gray-200 dark:border-neutral-dark-gray-600 sm:gap-6 sm:px-6">
       <input
         type="checkbox"
         name={`todo-${todo.id}`}
@@ -44,15 +44,23 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
       >
         <div
           className={`${
-            isCompleted ? 'bg-transparent' : 'bg-neutral-light-gray-100'
+            isCompleted
+              ? 'bg-transparent'
+              : 'bg-neutral-light-gray-100 dark:bg-neutral-dark-gray-800'
           } flex items-center justify-center mx-auto rounded-full w-5 h-5`}
         >
-          <img src={iconCheck.src} alt="Check icon" />
+          <img
+            src={iconCheck.src}
+            alt="Check icon"
+            className={isCompleted ? '' : 'hidden'}
+          />
         </div>
       </button>
       <p
         className={
-          isCompleted ? 'line-through text-neutral-light-gray-300' : ''
+          isCompleted
+            ? 'line-through text-neutral-light-gray-300 dark:text-neutral-dark-gray-600'
+            : 'dark:text-neutral-dark-gray-300'
         }
       >
         {todo.text}
