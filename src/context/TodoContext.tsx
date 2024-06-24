@@ -38,9 +38,7 @@ const defaultValue = {
 
 export const TodoContext = createContext<TodoContextType>(defaultValue);
 
-export function TodoContextContextProvider({
-  children,
-}: PropsWithChildren<{}>) {
+export function TodoContextProvider({ children }: PropsWithChildren<{}>) {
   const [items, setItems] = useState(defaultValue.items);
 
   function addItem(todoText: string) {
