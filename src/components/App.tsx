@@ -1,10 +1,10 @@
 import bgDesktopLight from '../assets/images/bg-desktop-light.jpg';
 import bgMobileLight from '../assets/images/bg-mobile-light.jpg';
-import moonIcon from '../assets/images/icon-moon.svg';
 
 import { TodoContextContextProvider } from '../context/TodoContext';
 
 import CreateInput from './CreateInput';
+import ThemeToggle from './ThemeToggle';
 import TodoList from './TodoList';
 
 export default function App() {
@@ -22,9 +22,7 @@ export default function App() {
           <h1 className="text-neutral-light-gray-100 text-5xl tracking-[0.25em]">
             TODO
           </h1>
-          <button>
-            <img src={moonIcon.src} alt="Moon icon" />
-          </button>
+          <ThemeToggle />
         </div>
         <TodoContextContextProvider>
           <CreateInput />
