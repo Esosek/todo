@@ -55,15 +55,17 @@ export default function TodoList() {
   }
 
   return (
-    <div className="bg-neutral-light-gray-100 mt-6 rounded-md shadow-lg">
-      <ul>
+    <>
+      <ul className="bg-neutral-light-gray-100 mt-6 rounded-t-md">
         {filteredTodos.map((todo) => (
           <TodoListItem key={todo.id} todo={todo} />
         ))}
       </ul>
-      <div className="grid grid-cols-3 py-3 px-6 text-neutral-light-gray-400 sm:text-base">
-        <p>{activeTodosLenght} items left</p>
-        <div className="flex gap-4 font-bold">
+      <div className="grid grid-cols-2 gap-y-4 md:grid-cols-[1fr_auto_1fr] text-neutral-light-gray-400 sm:text-base">
+        <p className="pl-6 bg-neutral-light-gray-100 py-4 rounded-bl-md">
+          {activeTodosLenght} items left
+        </p>
+        <div className="flex gap-4 bg-neutral-light-gray-100 justify-center px-6 py-4 w-full font-bold order-2 col-span-2 justify-self-center rounded-md md:rounded-none md:order-none md:col-span-1 md:mx-0">
           {Object.values(Filter).map((f) => (
             <button
               key={f}
@@ -78,13 +80,15 @@ export default function TodoList() {
             </button>
           ))}
         </div>
-        <button
-          onClick={handleClearCompleted}
-          className="text-right hover:text-neutral-light-gray-500"
-        >
-          Clear Completed
-        </button>
+        <div className="flex items-center justify-end bg-neutral-light-gray-100 rounded-br-md pr-6">
+          <button
+            onClick={handleClearCompleted}
+            className="text-right hover:text-neutral-light-gray-500"
+          >
+            Clear Completed
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
