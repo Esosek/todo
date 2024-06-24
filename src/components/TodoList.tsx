@@ -55,7 +55,7 @@ export default function TodoList() {
   }
 
   return (
-    <div className="bg-neutral-light-gray-100 mt-6 rounded-md">
+    <div className="bg-neutral-light-gray-100 mt-6 rounded-md shadow-lg">
       <ul>
         {filteredTodos.map((todo) => (
           <TodoListItem key={todo.id} todo={todo} />

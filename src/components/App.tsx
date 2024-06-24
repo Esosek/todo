@@ -11,7 +11,7 @@ export default function App() {
   const isMobile = window.innerWidth < 768;
 
   return (
-    <main className="text-lg min-h-lvh bg-neutral-light-gray-200 text-neutral-light-gray-500">
+    <main className="text-lg min-h-lvh text-neutral-light-gray-500">
       <img
         src={isMobile ? bgMobileLight.src : bgDesktopLight.src}
         alt="Background image of mountains"
@@ -28,6 +28,9 @@ export default function App() {
           <CreateInput />
           <TodoList />
         </TodoContextContextProvider>
+        <p className="text-center text-base mt-16 text-neutral-light-gray-400">
+          Drag and drop to reorder list
+        </p>
       </div>
     </main>
   );
