@@ -39,7 +39,7 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
         className={`size-6 rounded-full ${
           isCompleted
             ? 'bg-gradient-to-br'
-            : 'bg-neutral-light-gray-200 hover:bg-gradient-to-br'
+            : 'bg-neutral-light-gray-200 dark:bg-neutral-dark-gray-600 hover:bg-gradient-to-br'
         } from-primary-blue-gradient-start to-primary-blue-gradient-end`}
       >
         <div
