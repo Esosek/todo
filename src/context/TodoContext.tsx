@@ -25,12 +25,16 @@ type TodoContextType = {
 
 const defaultValue = {
   items: [
-    { id: 0, text: 'Go to Berlin', status: TodoItemStatus.COMPLETED },
-    { id: 1, text: 'Eat lunch', status: TodoItemStatus.ACTIVE },
+    { id: 0, text: 'Go to Berlin', status: TodoItemStatus.ACTIVE },
+    {
+      id: 1,
+      text: 'Have a poke bowl for lunch',
+      status: TodoItemStatus.ACTIVE,
+    },
     {
       id: 2,
       text: 'Complete Todo App on Frontend Mentor',
-      status: TodoItemStatus.ACTIVE,
+      status: TodoItemStatus.COMPLETED,
     },
   ],
   draggedItem: null,
