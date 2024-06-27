@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, type DragEvent } from 'react';
 
 import iconCheck from '../assets/images/icon-check.svg';
 import iconCross from '../assets/images/icon-cross.svg';
@@ -13,19 +13,29 @@ type TodoListItemProps = {
 };
 
 export default function TodoListItem({ todo }: TodoListItemProps) {
-  const { toggleItem, removeItem } = useContext(TodoContext);
+  const { toggleItem, removeItem, setDragItem, handleDragEnter } =
+    useContext(TodoContext);
   const isCompleted = todo.status === TodoItemStatus.COMPLETED;
 
-  function handleToggle() {
-    toggleItem(todo.id);
-  }
+  const handleToggle = () => toggleItem(todo.id);
+  const handleDelete = () => removeItem(todo.id);
+  const handleOnDragStart = () => setDragItem(todo);
+  const handleOnDragEnd = () => setDragItem(null);
 
-  function handleDelete() {
-    removeItem(todo.id);
+  function handleOnDragEnter(e: DragEvent<HTMLLIElement>) {
+    e.preventDefault();
+    handleDragEnter(todo);
   }
 
   return (
-    <li className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4 px-4 border-b-[1px] border-neutral-light-gray-200 dark:border-neutral-dark-gray-600 sm:gap-6 sm:px-6">
+    <li
+      draggable
+      onDragStart={handleOnDragStart}
+      onDragEnd={handleOnDragEnd}
+      onDragEnter={handleOnDragEnter}
+      onDragOver={(e: DragEvent<HTMLLIElement>) => e.preventDefault()}
+      className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4 px-4 border-b-[1px] border-neutral-light-gray-200 dark:border-neutral-dark-gray-600 sm:gap-6 sm:px-6 hover:cursor-pointer"
+    >
       <input
         type="checkbox"
         name={`todo-${todo.id}`}
@@ -57,11 +67,11 @@ export default function TodoListItem({ todo }: TodoListItemProps) {
         </div>
       </button>
       <p
-        className={
+        className={`${
           isCompleted
             ? 'line-through text-neutral-light-gray-300 dark:text-neutral-dark-gray-600'
             : 'dark:text-neutral-dark-gray-300'
-        }
+        } hover:cursor-pointer`}
       >
         {todo.text}
       </p>

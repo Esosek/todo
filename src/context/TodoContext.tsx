@@ -14,10 +14,13 @@ export type TodoItem = {
 
 type TodoContextType = {
   items: TodoItem[];
+  draggedItem: TodoItem | null;
   addItem: (text: string) => void;
   removeItem: (id: number) => void;
   toggleItem: (id: number) => void;
   clearCompleted: () => void;
+  setDragItem: (item: TodoItem | null) => void;
+  handleDragEnter: (item: TodoItem) => void;
 };
 
 const defaultValue = {
@@ -30,16 +33,20 @@ const defaultValue = {
       status: TodoItemStatus.ACTIVE,
     },
   ],
+  draggedItem: null,
   addItem: () => {},
   removeItem: () => {},
   toggleItem: () => {},
   clearCompleted: () => {},
+  setDragItem: () => {},
+  handleDragEnter: () => {},
 };
 
 export const TodoContext = createContext<TodoContextType>(defaultValue);
 
 export function TodoContextProvider({ children }: PropsWithChildren<{}>) {
   const [items, setItems] = useState(defaultValue.items);
+  const [draggedItem, setDraggedItem] = useState<TodoItem | null>(null);
 
   function addItem(todoText: string) {
     setItems((prevItems) => [
@@ -83,9 +90,38 @@ export function TodoContextProvider({ children }: PropsWithChildren<{}>) {
       })
     );
   }
+
+  function setDragItem(item: TodoItem | null) {
+    setDraggedItem(item);
+  }
+
+  function handleDragEnter(item: TodoItem) {
+    // console.log('Dragging ', draggedItem?.text, 'over', item.text);
+    if (draggedItem === null) return;
+
+    setItems((prevItems) => {
+      const draggedIndex = prevItems.indexOf(draggedItem);
+      const dragOverIndex = prevItems.indexOf(item);
+      const updatedItems = [...prevItems];
+      [updatedItems[draggedIndex], updatedItems[dragOverIndex]] = [
+        item,
+        draggedItem,
+      ];
+      return updatedItems;
+    });
+  }
   return (
     <TodoContext.Provider
-      value={{ items, addItem, removeItem, toggleItem, clearCompleted }}
+      value={{
+        items,
+        draggedItem,
+        addItem,
+        removeItem,
+        toggleItem,
+        clearCompleted,
+        setDragItem,
+        handleDragEnter,
+      }}
     >
       {children}
     </TodoContext.Provider>
